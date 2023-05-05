@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.hasMany(models.Product, { foreignKey: "UserId" });
     }
   }
 
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       lastName: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: { type: DataTypes.STRING, unique: true },
       password: DataTypes.STRING,
     },
     {
